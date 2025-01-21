@@ -1,0 +1,154 @@
+<div class="profile-page" *ngIf="tokenExist">
+
+    <div class="card">
+
+        <div class="card-body profile-card">
+
+            <h1 class="mb-4">Profile Setting</h1>
+
+            <div class="profile-content shadow-sm">
+                <div class="row" *ngIf="!isEdit">
+                    <div class="col-6 image-col">
+                        <div class="profile-image">
+                            <img [src]="userData.profileImage" class="shadow-sm" *ngIf="userData.profileImage" alt="">
+                            <div class="default-profile" *ngIf="!userData.profileImage">
+                                <!-- <img src="../../assets/defatul-upload-image(3).jpg" alt=""> -->
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="lightgray" class="bi bi-camera" viewBox="0 0 16 16">
+                                        <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
+                                        <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                                    </svg>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-6 data-col">
+                        <form action="" class="user-form">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Name</label>
+                                <p>coder</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                <p>coder@tastysoft.cloud.com</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Password</label>
+                                <p>.............................</p>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn edit-btn" (click)="editProfile()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-pen-fill mb-1" viewBox="0 0 16 16">
+                                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                                    </svg>Edit Profile
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="row" *ngIf="isEdit && !isChangePasswrod">
+                    <div class="col-6 image-col">
+                        <div class="form-group p-3 edit-image-form">
+                            <div class="custom-dropzone mb-2" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+                                <ngx-dropzone-label>
+                                    <div class="current-profile-image" *ngIf="userData.profileImage">
+                                        <img [src]="userData.profileImage" alt="">
+                                    </div>
+                                    <div class="default-profile-image" *ngIf="!userData.profileImage">
+                                        <!-- <img src="../../assets/default-upload-image (2).jpg" alt=""> -->
+                                        <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="lightgray" class="bi bi-camera" viewBox="0 0 16 16">
+                                            <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
+                                            <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                                        </svg>
+                                        </span>
+                                        <h4>Upload Profile</h4>
+                                    </div>
+                                </ngx-dropzone-label>
+                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" class="selected-image" *ngIf="selectedFile" [file]="selectedFile">
+                                    <ngx-dropzone-label>
+                                    </ngx-dropzone-label>
+                                </ngx-dropzone-image-preview>
+
+                                <span class="success-icon" *ngIf="isUploaded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                    </svg>
+                                </span>
+                                <div class="text-center spinner" *ngIf="isLoading">
+                                    <div class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                                <span class="edit-image-icon" *ngIf="!selectedFile">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                    </svg>
+                                    <!-- <p style="font-size: 10px;margin-bottom: 0;">Edit Profile</p> -->
+                                </span>
+                            </div>
+
+                            <span style="margin:0 10px;">
+                            <button class="btn btn-sm fw-bold" style="font-size: 12px;border: 1px solid #1a8dc6;color: #1a8dc6;" *ngIf="selectedFile && !isUploaded" (click)="uploadFile()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-up" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"/>
+                                </svg>
+                                Upload
+                            </button>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="col-6 data-col">
+                        <div class="row">
+                            <form action="" class="edit-form">
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="username" [(ngModel)]="userData.username" name="username">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="exampleFormControlInput1" [(ngModel)]="userData.email" name="email">
+                                </div>
+                                <div class="mb-3">
+                                    <span style="font-size: 12px;cursor: pointer;" (click)="changePassword()">Change Password</span>
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button class="btn btn-sm cancel-btn me-md-2" type="button" (click)="cancelEdit()">Cancel</button>
+                                    <button class="btn btn-sm save-btn" type="button" (click)="updateProfile()">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 data-col" *ngIf="isChangePasswrod" style="max-width:500px;margin: auto;">
+                    <div class="row">
+                        <form class="edit-form" (ngSubmit)="f.form.valid" #f="ngForm">
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Old Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword2" class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword2">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword3" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword3" [(ngModel)]="password" name="password" minlength="6" required>
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button class="btn btn-sm cancel-btn me-md-2" type="button" (click)="cancelEditPassword()">Cancel</button>
+                                <button class="btn btn-sm save-btn" type="button" (click)="updatePassword()">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,168 @@
+<div class="col-md-12">
+    <div class="card card-container shadow-sm border-0" *ngIf="tokenExist">
+
+        <div class="page row shadow">
+
+            <!-- col-2  -->
+            <div class="col-2">
+
+                <div class="profile">
+                    <h1><span><img src="../../../assets/coca-leaves.png" style="width: 25px;height:25px;margin-bottom: 10px;margin-right: 5px;" alt="">Courses</span></h1>
+                </div>
+
+                <div class="user-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle m-0" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+                </div>
+
+                <ul class="list-group">
+                    <li class="list-group-item show-course active-item" (click)="getCoursePage()">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection mb-1" viewBox="0 0 16 16">
+                            <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"/>
+                        </svg>
+
+                        <span>Course</span>
+                    </li>
+
+                    <li class="list-group-item show-user" *ngIf="loggedInRole" (click)="getUserPage()">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people mb-1" viewBox="0 0 16 16">
+                            <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+                        </svg>
+                        <span>Users</span>
+                    </li>
+
+                    <li class="list-group-item show-profile" (click)="getProfilePage()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person mb-1" viewBox="0 0 16 16">
+                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                        </svg>
+                        <span>Profile</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- col-10 ---start------------------ -->
+            <div class="course-page col-10">
+
+                <div class="course-list">
+
+                    <div class="row course-header mb-4">
+                        <div class="col-6 d-grid course-title">
+                            <h2>My Courses</h2>
+                        </div>
+                        <div class="col-6 d-grid justify-content-end">
+                        </div>
+                    </div>
+
+                    <div class="row search-add-form mb-4">
+
+                        <div class="col-6 search-box justify-content-start">
+
+                            <form class="d-flex search-form" role="search" #f="ngForm">
+                                <svg xmlns="http://www.w3.org/2000/svg" (click)="refreshContent()" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise refresh-btn" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                                </svg>
+
+                                <input class="form-control search-input" style="font-size: 14px;" type="" placeholder="Search course ..." [(ngModel)]="title" name="title" required>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" (click)="closeSearchCourse()" *ngIf="f.form.valid" width="20" height="20" fill="currentColor" class="bi bi-x search-close-btn" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+
+                                <button class="btn" style="background-color: #00568B;color: white;" type="submit" (click)="searchCourse()" *ngIf="f.form.valid">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search mb-1" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                    </svg>
+                                </button>
+
+                                <button class="btn" style="background-color: #00568B;color: white;" type="submit" (click)="searchCourse()" *ngIf="f.form.invalid" disabled>
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search mb-1" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                    </svg>
+                                </button>
+                            </form>
+
+                        </div>
+
+                        <div class="add-course col-6 d-grid justify-content-end">
+                            <button class="btn btn-sm add-course-btn shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#createCourseModal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus plus-icon" viewBox="0 0 16 16">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection add-course-icon" viewBox="0 0 16 16">
+                            <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"/>
+                            </svg>
+                            <span class="add-course-label">Add course</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <ul class="col-3 course-col" *ngFor="let course of courses">
+                            <li class="list-group-item">
+                                <div class="card course" routerLink="/course-details/{{course.id}}">
+                                    <div class="course-image">
+                                        <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" *ngIf="!course.images" width="50%" height="50%" viewBox="0 0 816.22237 700.597 " xmlns:xlink="http://www.w3.org/1999/xlink "><path d="M772.0209,797.89518a34.81426,34.81426,0,0,1-16.74561-4.30859L278.867,533.04069a35.03942,35.03942,0,0,1-13.9137-47.50147L466.00063,117.924a34.99945,34.99945,0,0,1,47.50171-13.91358l476.4082,260.5459a35.03913,35.03913,0,0,1,13.91382,47.50147L802.777,779.673a34.7714,34.7714,0,0,1-20.86914,16.79492A35.147,35.147,0,0,1,772.0209,797.89518Zm-13.8667-9.57227a29.00079,29.00079,0,0,0,39.35864-11.5288L998.5602,409.17887A29.03345,29.03345,0,0,0,987.03164,369.82L510.62344,109.27409a29.00081,29.00081,0,0,0-39.35865,11.5288L270.21743,488.41813A29.03335,29.03335,0,0,0,281.746,527.777Z
+                                            "transform="translate(-191.88882 -99.7015)" fill="#f2f2f2"/><path d="M781.84414,669.32487a32.70567,32.70567,0,0,1-15.68262-4.0166L380.99917,454.66471a32.46947,32.46947,0,0,1-12.91992-44.1084L488.151,191.005a32.49693,32.49693,0,0,1,44.10865-12.91992L917.42226,388.72868a32.49758,32.49758,0,0,1,12.91993,44.10839l-.43873-.23974.43873.23974L810.27041,652.38834A32.3643,32.3643,0,0,1,781.84414,669.32487Z
+                                            "transform="translate(-191.88882 -99.7015)" fill="#808080"/><path d="M769.88882,797.7985h-543a32.53692,32.53692,0,0,1-32.5-32.5v-419a32.53692,32.53692,0,0,1,32.5-32.5h543a32.53685,32.53685,0,0,1,32.5,32.5v419A32.53685,32.53685,0,0,1,769.88882,797.7985Z
+                                            "transform="translate(-191.88882 -99.7015)" fill="#fff"/><path d="M769.88882,800.2985h-543a35.03947,35.03947,0,0,1-35-35v-419a35.03947,35.03947,0,0,1,35-35h543a35.03947,35.03947,0,0,1,35,35v419A35.03947,35.03947,0,0,1,769.88882,800.2985Zm-543-483a29.03275,29.03275,0,0,0-29,29v419a29.03275,29.03275,0,0,0,29,29h543a29.03276,29.03276,0,0,0,29-29v-419a29.03276,29.03276,0,0,0-29-29Z
+                                            "transform="translate(-191.88882 -99.7015)" fill="#e6e6e6"/><path d="M582.89156,451.586a40.76358,40.76358,0,0,0-32.55116,16.18593,26.83976,26.83976,0,0,0-37.44912,24.64757H623.72505A40.83342,40.83342,0,0,0,582.89156,451.586Z
+                                            "transform="translate(-191.88882 -99.7015)" fill="#e6e6e6"/><circle cx="148.19669" cy="445.96036" r="65.75727" fill="#6c63ff "/><path d="M725.24868,681.17851a31.87811,31.87811,0,0,1-7.35986.85h-439a31.87492,31.87492,0,0,1-15.46-3.97l1.16992-1.68,48.98-70.53,72.58008-104.49,1.06-1.53,11.41993-16.44a8.33693,8.33693,0,0,1,13.70019,0l37.93994,54.61v.01l22.31983,32.14,53.28027,76.7,80.80957-115.35a8.34782,8.34782,0,0,1,13.68018,0l51.83984,73.99,2.98,4.25Z
+                                            "transform="translate(-191.88882 -99.7015)" fill="#3f3d56"/><path d="M495.61848,519.76805A50.29271,50.29271,0,0,0,455.458,539.7377,33.114,33.114,0,0,0,409.2545,570.147h136.743A50.3789,50.3789,0,0,0,495.61848,519.76805Z
+                                            "transform="translate(-191.88882 -99.7015)" fill="#ccc"/><path d="M717.88882,683.02848h-439a32.97007,32.97007,0,0,1-33-33V399.78873a33.03734,33.03734,0,0,1,33-33h439a33.03734,33.03734,0,0,1,33,33V650.02848a32.96211,32.96211,0,0,1-33,33Zm-439-314.23975a31.0352,31.0352,0,0,0-31,31V650.02848a30.97077,30.97077,0,0,0,31,31h439a30.9637,30.9637,0,0,0,31-31V399.78873a31.03521,31.03521,0,0,0-31-31Z
+                                            "transform="translate(-191.88882 -99.7015)" fill="#3f3d56 "/></svg>
+                                        <img [src]="course.images" *ngIf="course.images" class="card-img-top" alt="...">
+                                    </div>
+                                    <div class="card-body course-body">
+                                        <h5 class="card-title" style="font-size: 16px;">{{course.courseTitle}}</h5>
+                                        <p class="card-text course-description" style="font-size: 14px;">{{course.courseDescription}}</p>
+                                        <span class="badge text-wrap view-course-btn" routerLink="/course-details/{{course.id}}">View</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <span style="width: 300px;margin: auto;" *ngIf="defaultCoursePage">
+                            <img src="../../../assets/courses.jpg" alt="">
+                            <p class="text-center fs-4 fw-bold">Oops!! You haven't any courses</p>
+                        </span>
+                    </div>
+
+                    <div class="course-message mt-5 text-center" *ngIf="!courses ">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18 " height="18 " fill="black " class="bi bi-search mb-1 " viewBox="0 0 16 16 ">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z "/>
+                        </svg>
+                        <h2 style="font-size:18px; ">Search result</h2>
+                        <p style="font-size:14px; ">Found "0" results for "{{title}}"</p>
+                    </div>
+
+                </div>
+
+                <!-- for user page --- -->
+                <div class="user-list d-none ">
+                    <app-admin-board></app-admin-board>
+                </div>
+
+                <!-- for profile page --- -->
+                <div class="profile-page d-none ">
+                    <app-profile></app-profile>
+                </div>
+
+                <!--Create course Modal -->
+                <div class="modal fade" id="createCourseModal" tabindex="-1" aria-labelledby="createCourseModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="padding:0 15px 0;">
+                            <app-create-course></app-create-course>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

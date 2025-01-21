@@ -1,0 +1,87 @@
+.card {
+    background-color: white;
+    max-width: 400px;
+    margin: auto;
+    border: none;
+    padding: 30px 40px;
+    margin-top: 60px;
+    border: 1px solid whitesmoke;
+}
+
+.card h4 {
+    color: #1a8dc6;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.card button {
+    font-weight: 600;
+    font-family: monospace;
+    color: white;
+}
+
+.loginMessage {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.loginMessage a {
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.errMessage {
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.alert-success p {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.signup-btn {
+    background-color: #1a8dc6;
+}
+
+.signup-btn:hover {
+    background-color: #039be5;
+}
+
+
+/* alert message --- */
+
+.alert-light {
+    max-width: 400px;
+    margin: auto;
+    border: none;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.alert-light .alert-heading {
+    font-size: 23px;
+    color: #039be5;
+    font-weight: 700;
+}
+
+.alert-light p {
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
+}
+
+.alert-light button {
+    background-color: #039be5;
+    color: white;
+    font-weight: 600;
+    width: 100px;
+}
+
+@media only screen and (max-width:350px) {
+    .card {
+        padding: 15px 10px;
+        margin: 60px 15px;
+    }
+}

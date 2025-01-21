@@ -1,0 +1,60 @@
+<div class="col-md-12">
+    <div class="card card-container shadow-sm" *ngIf="!isSuccessful">
+        <h4 class="header mb-4">Sign Up</h4>
+        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="form-group mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3" maxlength="20" #username="ngModel" />
+                <div class="text-danger errMessage" *ngIf="username.errors && f.submitted && !usernameError">
+                    <div *ngIf="username.errors.required">Username is required</div>
+                    <div *ngIf="username.errors.minlength">
+                        Username must be at least 3 characters
+                    </div>
+                    <div *ngIf="username.errors.maxlength">
+                        Username must be at most 20 characters
+                    </div>
+                </div>
+                <div class="text-danger errMessage" *ngIf="usernameError && !username.errors">
+                    {{userMessage}}
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email #email="ngModel" />
+                <div class="text-danger errMessage" *ngIf="email.errors && f.submitted">
+                    <div *ngIf="email.errors.required">Email is required</div>
+                    <div *ngIf="email.errors.email">
+                        Email must be a valid email address
+                    </div>
+                </div>
+                <div class="text-danger errMessage" *ngIf="emailError && !email.errors">
+                    {{emailMessage}}
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" [(ngModel)]="form.password" required name="password" minlength="6" #password="ngModel" />
+                <div class="text-danger errMessage" *ngIf="password.errors && f.submitted">
+                    <div *ngIf="password.errors.required">Password is required</div>
+                    <div *ngIf="password.errors.minlength">
+                        Password must be at least 6 characters
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <button class="btn signup-btn btn-block shadow-sm w-100">SIGN UP</button>
+            </div>
+
+            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                Signup failed!<br />{{ errorMessage }}
+            </div>
+
+            <div class="form-group mb-3 loginMessage">
+                <p>Already a member?
+                    <a href="/login" routerLink="/login">Login</a>
+                </p>
+            </div>
+        </form>
+    </div>
+
+</div>

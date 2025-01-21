@@ -1,0 +1,61 @@
+.card-container {
+    padding: 30px 40px;
+    border: 1px solid whitesmoke;
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.course-form input,
+textarea {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.card-container label {
+    font-size: 16px;
+    font-weight: 600;
+    opacity: 0.7;
+}
+
+.card-container .save-btn {
+    background-color: #1a8dc6;
+    color: white;
+    border: none;
+}
+
+h4 {
+    font-size: 24px;
+    color: #1a8dc6;
+    color: black;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+.remove-btn {
+    margin-right: 235px;
+}
+
+.custom-dropzone {
+    position: relative;
+}
+
+.success-icon {
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    color: chartreuse;
+}
+
+@media only screen and (max-width:770px) {
+    .remove-btn {
+        margin-right: 150px;
+    }
+}
+
+@media only screen and (max-width:530px) {
+    .remove-btn {
+        margin-right: 100px;
+    }
+}

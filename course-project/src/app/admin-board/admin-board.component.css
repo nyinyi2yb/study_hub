@@ -1,0 +1,203 @@
+.card-container {
+    margin: auto;
+    border-radius: 10px;
+    padding-bottom: 50px;
+    padding: 25px;
+    min-height: 100vh;
+    background-color: transparent;
+}
+
+.user-column {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.user-row {
+    font-size: 15px;
+}
+
+.username {
+    font-weight: 400;
+}
+
+.search-form {
+    margin: auto;
+    padding: 5px 0;
+    position: relative;
+}
+
+.search-close-btn {
+    position: absolute;
+    right: 22%;
+    height: 37px;
+    line-height: 37px;
+}
+
+.roles-btn button.active-btn {
+    background-color: #1a8dc6;
+    color: white;
+    border: none;
+}
+
+.roles-btn .roles-btn-group {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid whitesmoke;
+    padding: 8px;
+}
+
+.role {
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #1a8dc6;
+    padding: 5px 10px;
+    color: #1a8dc6;
+    margin-top: 8px;
+}
+
+.user-row {
+    position: relative;
+}
+
+.role::after,
+.role::before {
+    --scale: 0;
+    position: absolute;
+    right: -10px;
+    transform: translateX(-5%) translateY(-100%) scale(var(--scale));
+}
+
+.role::before {
+    content: attr(data-tooltip);
+    width: max-content;
+    background-color: gray;
+    color: white;
+    font-weight: 500;
+    border: 1px solid white;
+    height: 28px;
+    width: 75px;
+    line-height: 28px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.role:hover::before {
+    --scale: 1;
+}
+
+td:hover.role {
+    background-color: #1a8dc6;
+    color: white;
+}
+
+
+/* search box start------------ */
+
+.search-box .form-control {
+    background-color: white;
+}
+
+.search-box .form-control::placeholder {
+    font-size: 14px;
+}
+
+.search-box .input-group-text {
+    background-color: #1a8dc6;
+    color: white;
+    border-radius: 5px;
+}
+
+.search-box .input-group-text:hover {
+    background-color: #039be5;
+}
+
+.add-button {
+    background-color: #1a8dc6;
+    color: white;
+}
+
+
+/* search box end------------ */
+
+
+/* roles button start ----------*/
+
+.role-button button {
+    color: white;
+    background-color: #1a8dc6;
+}
+
+.role-button button:hover {
+    background-color: #039be5;
+}
+
+
+/* roles button end ----------*/
+
+h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.user-table {
+    background-color: white;
+    padding: 5px 20px 15px 20px;
+    border-radius: 10px;
+    border: 1px solid whitesmoke;
+}
+
+table {
+    border-bottom: 1px solid whitesmoke;
+    margin-top: 20px;
+}
+
+.table-header {
+    border-bottom: 1px solid gainsboro;
+}
+
+.table-body {
+    font-size: 15px;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    margin-bottom: 3px;
+}
+
+.profile-image {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: lightblue;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    color: darkblue;
+}
+
+@media only screen and (max-width:760px) {
+    /* .table {
+        display: none;
+    }
+    .user-table {
+        display: none;
+    }
+    .users-list-card {
+        display: flex;
+    }
+    .users-list {
+        display: grid;
+        flex: 0 0 100%;
+    } */
+}
+
+@media only screen and (max-width:440px) {
+    .card-container {
+        padding: 20px;
+        margin-top: 20px;
+    }
+}

@@ -1,0 +1,52 @@
+<div class="col-md-12">
+    <div class="card card-container shadow-sm" *ngIf="!isLoggedIn">
+        <h4 class="mb-4">Login</h4>
+        <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="form-group mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required #email="ngModel" email/>
+                <div class="text-danger errMessage" role="alert" *ngIf="email.errors && f.submitted">
+                    <div class="" *ngIf="email.errors.required">
+                        Email is required!
+                    </div>
+                    <div class="" *ngIf="email.errors.email">
+                        Email must be a valid email
+                    </div>
+                </div>
+                <div class="text-danger errMessage" *ngIf="!email.errors">
+                    {{emailMessage}}
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel" />
+                <div class="text-danger errMessage" role="alert" *ngIf="password.errors && f.submitted">
+                    <div *ngIf="password.errors.required">Password is required</div>
+                    <div *ngIf="password.errors.minlength">
+                        Password must be at least 6 characters
+                    </div>
+                </div>
+                <div class="text-danger errMessage" *ngIf="!password.errors">
+                    {{passwordMessage}}
+                </div>
+            </div>
+            <div class="text-danger errMessage mb-3" *ngIf="f.form.valid">
+                {{errorMessage}}
+            </div>
+            <div class="form-group mb-4">
+                <button class="btn login-btn shadow-sm w-100 btn-block">LOGIN</button>
+            </div>
+            <div class="form-group mb-3">
+                <div class="alert" role="alert" *ngIf="f.submitted && isLoginFailed">
+                    Login failed: {{ errorMessage }}
+                </div>
+            </div>
+            <div class="form-group mb-3 signupMessage">
+                <p>Not a member?
+                    <a href="/register" routerLink="/register">SignUp</a>
+                </p>
+            </div>
+        </form>
+    </div>
+
+</div>

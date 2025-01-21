@@ -1,0 +1,61 @@
+.card-container {
+    border: 1xp solid black;
+    border: none;
+}
+
+.card-container label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.card-container .add-button {
+    background-color: #1a8dc6;
+    color: white;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+
+/* for upload file */
+
+.file-container {
+    border: 1px dashed black;
+    border-radius: 5px;
+}
+
+.file-container .file {
+    opacity: 0;
+    padding: 3rem;
+    width: auto;
+    height: 3rem;
+}
+
+.image-name {
+    font-size: 14px;
+    bottom: 0;
+}
+
+.custom-dropzone {
+    position: relative;
+}
+
+.success-icon {
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    color: chartreuse;
+}
+
+.spinner {
+    position: absolute;
+    top: 45%;
+    left: 25%;
+    color: white;
+}

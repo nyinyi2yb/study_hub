@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    background-color: ghostwhite;
+    background-color: whitesmoke;
+    background-color: white;
+    background-color: ghostwhite;
+    background-color: white;
+    /* background-image: url(./assets/blue-abstract-gradient-wave-wallpaper.jpg); */
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
+}

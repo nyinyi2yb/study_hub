@@ -1,0 +1,96 @@
+<div class="col-md-12">
+
+    <div class="card card-container shadow-sm" *ngIf="currentCourse.id && !showDeleteMessage">
+
+        <h4 class="mb-3">Edit course</h4>
+
+        <form *ngIf="!isSubmitted" name="form" class="row mt-4" #f="ngForm" novalidate>
+
+            <div class="course-form col-12">
+
+                <div class="form-group mb-3">
+                    <label for="courseTitle" class="form-label">Title</label>
+                    <input type="text" class="form-control" [(ngModel)]="currentCourse.courseTitle" name="title" required #title="ngModel">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" rows="3" [(ngModel)]="currentCourse.courseDescription" name="description"></textarea>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <!-- drop zone start -->
+                    <div class="custom-dropzone" ngx-dropzone [multiple]="false" [accept]="'image/*'" (change)="onSelect($event)">
+                        <ngx-dropzone-label>
+                            <div>
+                                <div style="width:193px;height: 139px;left: 0;" *ngIf="currentCourse.images">
+                                    <img src="{{currentCourse.images}}" alt="" style="border-radius: 10px;width: 100%;height: 100%;">
+                                </div>
+                                <div *ngIf="!currentCourse.images">
+                                    <img src="../../../assets/upload (1).png" alt="" style="width:100px;height: 100px;opacity: 0.5;">
+                                    <h4 style="font-size:16px;">Upload your image</h4>
+                                </div>
+                            </div>
+                        </ngx-dropzone-label>
+                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngIf="selectedFile" [file]="selectedFile">
+                            <ngx-dropzone-label></ngx-dropzone-label>
+                        </ngx-dropzone-image-preview>
+
+                        <span class="success-icon" *ngIf="isUploaded">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        </span>
+                        <div class="text-center spinner" *ngIf="isLoading">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-sm btn-outline-dark mt-2" (click)="updateImage()" *ngIf="selectedFile">Upload</button>
+                    <button class="btn btn-sm btn-outline-dark mt-2" (click)="updateImage()" *ngIf="!selectedFile">Upload</button>
+
+                    <!-- drop zone end  -->
+                </div>
+
+                <div class="row">
+                    <div class="col-6 ">
+                        <div class="form-group d-grid gap-2 d-md-flex justify-content-md-start">
+                            <button class="btn btn-light opacity-75" type="button" (click)="toDelete()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash mb-1" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+
+                            <div class="d-grid gap-2 d-md-block">
+                                <button class="btn cancel-btn" type="button" (click)="clickCancel()">Cancel</button>
+                            </div>
+
+                            <button class="btn save-btn" type="button" *ngIf="f.valid" (click)="updateCourse()">Save Changes</button>
+                            <button class="btn save-btn" type="button" *ngIf="f.invalid" (click)="updateCourse()" disabled>Save Changes</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+    <div class="card card-container shadow-sm" *ngIf="showDeleteMessage">
+        <h5 class="mb-2">You're about to delete a course.</h5>
+        <p style="font-size: 14px;">Are you sure?</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-sm me-md-2" type="button" (click)="cancelDelete()">Cancel</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteCourse()" type="button">Delete</button>
+        </div>
+    </div>
+</div>
